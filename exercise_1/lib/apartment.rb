@@ -28,6 +28,6 @@ attr_reader :is_rented, :rooms, :room_count
     sorted = room_names.sort_by do |room_name|
       room_name.chars
     end
-    p sorted
+    sorted
   end
 end
