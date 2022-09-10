@@ -25,10 +25,31 @@ RSpec.describe Apartment do
   it "can have up to 4 rooms" do
     apartment = Apartment.new
     bathroom = Room.new("bathroom")
+    laundry = Room.new("laundry")
+    kitchen = Room.new("kitchen")
+    bedroom = Room.new("bedroom")
 
     apartment.add_room(bathroom)
+    apartment.add_room(laundry)
+    apartment.add_room(kitchen)
+    apartment.add_room(bedroom)
 
-    expect(apartment.add_room(bathroom).first).to be bathroom
+    expect(apartment.rooms).to eq([bathroom, laundry, kitchen, bedroom])
+
+  end
+  it "can list rooms alphabetically" do
+    apartment = Apartment.new
+    bathroom = Room.new("bathroom")
+    laundry = Room.new("laundry")
+    kitchen = Room.new("kitchen")
+    bedroom = Room.new("bedroom")
+
+    apartment.add_room(bathroom)
+    apartment.add_room(laundry)
+    apartment.add_room(kitchen)
+    apartment.add_room(bedroom)
+
+  expect(apartment.list_rooms_by_name_alphabetically).to eq(["bathroom", "bedroom", "kitchen", "laundry"])
 
   end
 
