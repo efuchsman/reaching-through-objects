@@ -1,6 +1,5 @@
 class Street
 attr_reader :name, :buildings_array
-
   def initialize(name)
     @name = name
     @buildings_array = []
@@ -22,6 +21,20 @@ attr_reader :name, :buildings_array
         bldg_name.chars
       end
       sorted
+  end
+
+  def number_of_available_apartments
+    array = []
+      @buildings_array.each do |bldg|
+        array << bldg.apartments
+
+      end
+        array = array.flatten
+    #  require 'pry'; binding.pry
+        selected = array.select do |apartment|
+        apartment.is_rented? == false
+        end
+      selected.count
   end
 
 end

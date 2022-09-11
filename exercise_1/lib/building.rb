@@ -15,4 +15,6 @@ attr_reader :building_name, :building_number, :apartments
     @apartments
   end
 
+
+
 end
