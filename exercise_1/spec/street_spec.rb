@@ -11,5 +11,12 @@ RSpec.describe do Street
     expect(adlington).to be_an_instance_of(Street)
   end
 
+  it "has a name" do
+    adlington = Street.new("Adlington Road")
+
+    expect(adlington.name).to eq("Adlington Road")
+  end
+
+
 
 end
