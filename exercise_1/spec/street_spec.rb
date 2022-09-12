@@ -61,5 +61,40 @@ RSpec.describe do Street
 
       expect(adlington.number_of_available_apartments).to eq(3)
     end
+    it "hashes out rooms" do
+      adlington = Street.new("Adlington Road")
+      zebra = Building.new("123", "Zebra Apartments")
+      savills = Building.new("623", "Savills Apartment Building")
+      bathroom = Room.new("bathroom")
+      laundry = Room.new("laundry")
+      kitchen = Room.new("kitchen")
+      bedroom = Room.new("bedroom")
+      apt_1 = Apartment.new
+      apt_2 = Apartment.new
+      apt_3 = Apartment.new
 
+
+      apt_1.add_room(bedroom)
+      apt_1.add_room(laundry)
+      zebra.add_apartment(apt_1)
+      adlington.add_building(zebra)
+
+      apt_2.add_room(bathroom)
+      apt_2.add_room(laundry)
+      apt_2.add_room(kitchen)
+      apt_2.add_room(bedroom)
+
+      apt_3.add_room(bathroom)
+      apt_3.add_room(laundry)
+      apt_3.add_room(bedroom)
+
+      savills.add_apartment(apt_2)
+      savills.add_apartment(apt_3)
+      adlington.add_building(savills)
+
+      expect(adlington.list_available_apartments).to eq({
+      "Zebra Apartments" => [["bedroom", "laundry"]],
+        "Savills Apartment Building" => [["bathroom", "bedroom", "kitchen", "laundry"],
+         ["bathroom", "bedroom", "laundry"]]})
+    end
 end

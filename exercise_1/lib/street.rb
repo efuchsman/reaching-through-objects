@@ -20,7 +20,7 @@ attr_reader :name, :buildings_array
       sorted =buildings_alphabetically.sort_by do |bldg_name|
         bldg_name.chars
       end
-      sorted
+    sorted
   end
 
   def number_of_available_apartments
@@ -37,4 +37,16 @@ attr_reader :name, :buildings_array
       selected.count
   end
 
+  def list_available_apartments
+   available = {}
+    @buildings_array.each do |bldg|
+
+        available[bldg.building_name] = []
+        bldg.list_apartments.each do |apt|
+
+          available[bldg.building_name] += [apt.list_rooms_by_name_alphabetically] if apt.is_rented? == false
+        end
+      end
+      available
+  end
 end
