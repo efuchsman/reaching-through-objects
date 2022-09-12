@@ -38,15 +38,17 @@ attr_reader :name, :buildings_array
   end
 
   def list_available_apartments
-   available = {}
+   available_apts = {}
     @buildings_array.each do |bldg|
 
-        available[bldg.building_name] = []
-        bldg.list_apartments.each do |apt|
+        available_apts[bldg.building_name] = []
+        bldg.list_apartments.each do |apartment|
 
-          available[bldg.building_name] += [apt.list_rooms_by_name_alphabetically] if apt.is_rented? == false
+          available_apts[bldg.building_name] += [apartment.list_rooms_by_name_alphabetically]
+          if apartment.is_rented? == false
+          end
         end
       end
-      available
+      available_apts
   end
 end
